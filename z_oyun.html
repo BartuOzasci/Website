@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <style>
+    /* Genel Body ve Arka Plan */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: url("images/oyunlararkaplan.jpg") center/cover no-repeat fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Gradient Karartma */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 0;
+    }
+
+    /* Oyun Menüsü Butonu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 102, 0, 0.9);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 2;
+    }
+    .menu-btn:hover {
+      background: #cc5200;
+    }
+    .menu-btn .material-icons {
+      font-size: 20px;
+    }
+
+    /* Oyun Container */
+    .game-container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Başlık */
+    .game-container h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-align: center;
+      border-bottom: 3px solid #ff6600;
+      padding-bottom: 10px;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 80px);
+      grid-template-rows: repeat(6, 80px);
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Kartlar */
+    .card {
+      width: 80px;
+      height: 80px;
+      background: #444;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      user-select: none;
+    }
+
+    .card.flipped,
+    .card.matched {
+      background: #ff6600;
+      color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    /* Sonuç ve Tekrar Oyna */
+    #result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+
+    #restart-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff6600;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+    }
+
+    #restart-btn:hover {
+      background-color: #cc5200;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(6, 45px);
+        grid-template-rows: repeat(6, 45px);
+        gap: 8px;
+      }
+      .card {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+      }
+      .game-container h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Bartu ÖZAŞÇI Hafıza Kart Tahmin Oyunu 6x6, responsive ve eğlenceli"
+    />
+    <title>Hafıza Kart Tahmin Oyunu</title>
+    <!-- Google Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="game-container">
+      <h1>Kart Tahmin Oyunu</h1>
+
+      <!-- Hafıza kartları -->
+      <div class="grid" id="gameGrid"></div>
+
+      <!-- Sonuç ve Tekrar Oyna Butonu -->
+      <div id="result"></div>
+      <button id="restart-btn">Tekrar Oyna</button>
+    </div>
+
+    <script>
+      const grid = document.getElementById("gameGrid");
+      const result = document.getElementById("result");
+      const restartBtn = document.getElementById("restart-btn");
+
+      const icons = [
+        "🍎",
+        "🍌",
+        "🍇",
+        "🍉",
+        "🍒",
+        "🥝",
+        "🍍",
+        "🍑",
+        "🍋",
+        "🍓",
+        "🥭",
+        "🍈",
+        "🍏",
+        "🥥",
+        "🥑",
+        "🍅",
+        "🍆",
+        "🥔",
+      ];
+      // 18 ikon × 2 = 36 kart
+      let cardsArray = [...icons, ...icons];
+      cardsArray.sort(() => 0.5 - Math.random());
+
+      let firstCard = null;
+      let secondCard = null;
+      let lockBoard = false;
+      let matchedCount = 0;
+
+      // Kartları oluştur
+      function createBoard() {
+        grid.innerHTML = "";
+        cardsArray.forEach((icon) => {
+          const card = document.createElement("div");
+          card.classList.add("card");
+          card.dataset.icon = icon;
+          card.innerHTML = "";
+          card.addEventListener("click", flipCard);
+          grid.appendChild(card);
+        });
+      }
+
+      function flipCard() {
+        if (lockBoard) return;
+        if (this === firstCard) return;
+
+        this.classList.add("flipped");
+        this.textContent = this.dataset.icon;
+
+        if (!firstCard) {
+          firstCard = this;
+          return;
+        }
+
+        secondCard = this;
+        lockBoard = true;
+
+        checkForMatch();
+      }
+
+      function checkForMatch() {
+        if (firstCard.dataset.icon === secondCard.dataset.icon) {
+          firstCard.classList.add("matched");
+          secondCard.classList.add("matched");
+          matchedCount += 2;
+          resetBoard();
+        } else {
+          setTimeout(() => {
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+            firstCard.textContent = "";
+            secondCard.textContent = "";
+            resetBoard();
+          }, 800);
+        }
+
+        if (matchedCount === cardsArray.length) {
+          result.textContent = "🎉 Tebrikler, oyunu bitirdiniz!";
+          restartBtn.style.display = "inline-block";
+        }
+      }
+
+      function resetBoard() {
+        [firstCard, secondCard] = [null, null];
+        lockBoard = false;
+      }
+
+      // Tekrar Oyna Butonu
+      restartBtn.addEventListener("click", () => {
+        cardsArray.sort(() => 0.5 - Math.random());
+        matchedCount = 0;
+        result.textContent = "";
+        restartBtn.style.display = "none";
+        createBoard();
+      });
+
+      // Başlangıç
+      createBoard();
+    </script>
+  </body>
+</html>

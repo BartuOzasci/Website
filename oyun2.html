@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matematik Oyunu - 60 Saniyelik Test</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #e0e0e0;
+      }
+
+      .game-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .timer {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px 20px;
+        border-radius: 10px;
+      }
+
+      .score {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px 20px;
+        border-radius: 10px;
+      }
+
+      .question-container {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+      }
+
+      .question {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .option {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 15px;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .option:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+      }
+
+      .option.correct {
+        background: #2ecc71;
+        animation: pulse 0.5s;
+      }
+
+      .option.wrong {
+        background: #e74c3c;
+        animation: shake 0.5s;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      button {
+        background: #3498db;
+        border: none;
+        color: white;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background: #2980b9;
+        transform: translateY(-3px);
+      }
+
+      #start-btn {
+        background: #2ecc71;
+      }
+
+      #start-btn:hover {
+        background: #27ae60;
+      }
+
+      .result {
+        display: none;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 30px;
+        border-radius: 15px;
+        margin-top: 20px;
+        animation: fadeIn 1s ease;
+      }
+
+      .result h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .final-score {
+        font-size: 4rem;
+        font-weight: bold;
+        margin: 20px 0;
+        color: #f1c40f;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        animation: bounce 1s;
+      }
+
+      .message {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Animations */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translateX(-5px);
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+          transform: translateX(5px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: confetti-fall linear forwards;
+      }
+
+      @keyframes confetti-fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .question {
+          font-size: 2.5rem;
+        }
+
+        .options {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Matematik Oyunu</h1>
+      <p class="subtitle">60 Saniyede Kaç Doğru Yapabilirsin?</p>
+
+      <div class="game-info">
+        <div class="timer" id="timer">Süre: 60s</div>
+        <div class="score" id="score">Skor: 0</div>
+      </div>
+
+      <div class="question-container">
+        <div class="question" id="question">5 + 3 = ?</div>
+        <div class="options" id="options">
+          <button class="option">8</button>
+          <button class="option">7</button>
+          <button class="option">9</button>
+          <button class="option">6</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="start-btn">Başla</button>
+        <button id="restart-btn" class="hidden">Yeniden Başla</button>
+      </div>
+
+      <div class="result" id="result">
+        <h2>Oyun Bitti!</h2>
+        <div class="final-score" id="final-score">0</div>
+        <div class="message" id="message">Harika bir performans!</div>
+        <button id="play-again">Tekrar Oyna</button>
+      </div>
+    </div>
+
+    <script>
+      // DOM Elements
+      const timerElement = document.getElementById("timer");
+      const scoreElement = document.getElementById("score");
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const startButton = document.getElementById("start-btn");
+      const restartButton = document.getElementById("restart-btn");
+      const resultElement = document.getElementById("result");
+      const finalScoreElement = document.getElementById("final-score");
+      const messageElement = document.getElementById("message");
+      const playAgainButton = document.getElementById("play-again");
+
+      // Game Variables
+      let score = 0;
+      let timeLeft = 60;
+      let timer;
+      let isGameActive = false;
+
+      // Event Listeners
+      startButton.addEventListener("click", startGame);
+      restartButton.addEventListener("click", startGame);
+      playAgainButton.addEventListener("click", startGame);
+
+      // Start Game Function
+      function startGame() {
+        score = 0;
+        timeLeft = 60;
+        isGameActive = true;
+
+        // Reset UI
+        scoreElement.textContent = `Skor: ${score}`;
+        timerElement.textContent = `Süre: ${timeLeft}s`;
+        resultElement.style.display = "none";
+        startButton.classList.add("hidden");
+        restartButton.classList.remove("hidden");
+
+        // Start Timer
+        clearInterval(timer);
+        timer = setInterval(updateTimer, 1000);
+
+        // Generate first question
+        generateQuestion();
+      }
+
+      // Update Timer
+      function updateTimer() {
+        timeLeft--;
+        timerElement.textContent = `Süre: ${timeLeft}s`;
+
+        // Change color when time is running out
+        if (timeLeft <= 10) {
+          timerElement.style.background = "rgba(231, 76, 60, 0.5)";
+        }
+
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }
+
+      // Generate Random Math Question
+      function generateQuestion() {
+        // Random operation: 0=addition, 1=subtraction, 2=multiplication, 3=division
+        const operation = Math.floor(Math.random() * 4);
+        let num1, num2, correctAnswer, questionText;
+
+        switch (operation) {
+          case 0: // Addition
+            num1 = Math.floor(Math.random() * 50) + 1;
+            num2 = Math.floor(Math.random() * 50) + 1;
+            correctAnswer = num1 + num2;
+            questionText = `${num1} + ${num2} = ?`;
+            break;
+          case 1: // Subtraction
+            num1 = Math.floor(Math.random() * 50) + 1;
+            num2 = Math.floor(Math.random() * num1) + 1;
+            correctAnswer = num1 - num2;
+            questionText = `${num1} - ${num2} = ?`;
+            break;
+          case 2: // Multiplication
+            num1 = Math.floor(Math.random() * 12) + 1;
+            num2 = Math.floor(Math.random() * 12) + 1;
+            correctAnswer = num1 * num2;
+            questionText = `${num1} × ${num2} = ?`;
+            break;
+          case 3: // Division
+            num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = Math.floor(Math.random() * 10) + 1;
+            num1 = num2 * correctAnswer;
+            questionText = `${num1} ÷ ${num2} = ?`;
+            break;
+        }
+
+        // Generate options (1 correct, 3 incorrect)
+        let options = [correctAnswer];
+
+        // Generate 3 unique wrong answers
+        while (options.length < 4) {
+          let wrongAnswer;
+          // For division, ensure the wrong answers are integers
+          if (operation === 3) {
+            wrongAnswer = Math.floor(Math.random() * 15) + 1;
+            // Make sure it's different from correct answer and not already in options
+            if (
+              wrongAnswer !== correctAnswer &&
+              !options.includes(wrongAnswer)
+            ) {
+              options.push(wrongAnswer);
+            }
+          } else {
+            // For other operations, generate answers within a reasonable range
+            let offset = Math.floor(Math.random() * 10) + 1;
+            wrongAnswer =
+              correctAnswer + (Math.random() < 0.5 ? offset : -offset);
+            // Ensure it's positive and different
+            if (
+              wrongAnswer > 0 &&
+              wrongAnswer !== correctAnswer &&
+              !options.includes(wrongAnswer)
+            ) {
+              options.push(wrongAnswer);
+            }
+          }
+        }
+
+        // Shuffle options
+        options = shuffleArray(options);
+
+        // Update UI
+        questionElement.textContent = questionText;
+        optionsElement.innerHTML = "";
+
+        options.forEach((option) => {
+          const button = document.createElement("button");
+          button.className = "option";
+          button.textContent = option;
+          button.addEventListener("click", () =>
+            checkAnswer(option, correctAnswer)
+          );
+          optionsElement.appendChild(button);
+        });
+      }
+
+      // Shuffle Array (Fisher-Yates algorithm)
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      // Check Answer
+      function checkAnswer(selectedAnswer, correctAnswer) {
+        if (!isGameActive) return;
+
+        const options = document.querySelectorAll(".option");
+
+        if (selectedAnswer === correctAnswer) {
+          // Correct answer
+          score++;
+          scoreElement.textContent = `Skor: ${score}`;
+
+          // Highlight correct answer
+          options.forEach((option) => {
+            if (parseInt(option.textContent) === correctAnswer) {
+              option.classList.add("correct");
+            }
+          });
+
+          // Generate new question after a short delay
+          setTimeout(generateQuestion, 800);
+        } else {
+          // Wrong answer
+          options.forEach((option) => {
+            if (parseInt(option.textContent) === correctAnswer) {
+              option.classList.add("correct");
+            }
+            if (parseInt(option.textContent) === selectedAnswer) {
+              option.classList.add("wrong");
+            }
+          });
+
+          // Generate new question after a short delay
+          setTimeout(generateQuestion, 800);
+        }
+      }
+
+      // End Game
+      function endGame() {
+        isGameActive = false;
+        clearInterval(timer);
+
+        // Show result
+        resultElement.style.display = "block";
+        finalScoreElement.textContent = score;
+
+        // Set message based on score
+        if (score >= 20) {
+          messageElement.textContent = "Mükemmel! Matematik dehasısın!";
+          createConfetti();
+        } else if (score >= 15) {
+          messageElement.textContent = "Harika! Çok iyi bir performans!";
+          createConfetti();
+        } else if (score >= 10) {
+          messageElement.textContent = "Güzel! İyi bir skor elde ettin!";
+        } else if (score >= 5) {
+          messageElement.textContent =
+            "Fena değil! Daha fazla pratik yapabilirsin.";
+        } else {
+          messageElement.textContent =
+            "Matematik becerilerini geliştirmen gerekebilir.";
+        }
+      }
+
+      // Create Confetti Animation
+      function createConfetti() {
+        const colors = [
+          "#ff6b6b",
+          "#ff9ff3",
+          "#54a0ff",
+          "#1dd1a1",
+          "#feca57",
+          "#ff9f43",
+        ];
+
+        for (let i = 0; i < 150; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+          confetti.style.width = Math.random() * 10 + 5 + "px";
+          confetti.style.height = Math.random() * 10 + 5 + "px";
+
+          document.body.appendChild(confetti);
+
+          // Remove confetti after animation
+          setTimeout(() => {
+            confetti.remove();
+          }, 5000);
+        }
+      }
+
+      // Initialize first question
+      generateQuestion();
+    </script>
+  </body>
+</html>

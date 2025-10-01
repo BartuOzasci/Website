@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katil Kim? - Gizemli Cinayet Oyunu</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #e6e6e6;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #ff6b6b;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: #a5b1c2;
+      }
+
+      .game-area {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .story-section {
+        background: rgba(30, 30, 46, 0.8);
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .story-title {
+        font-size: 1.5rem;
+        color: #ff9ff3;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ff9ff3;
+        padding-bottom: 10px;
+      }
+
+      .story-text {
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+
+      .victim-info {
+        background: rgba(255, 107, 107, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid #ff6b6b;
+      }
+
+      .hints-section {
+        background: rgba(45, 52, 74, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .hint {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .hint:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .hint-title {
+        font-weight: bold;
+        color: #54a0ff;
+        margin-bottom: 5px;
+      }
+
+      .suspects-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .suspect {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .suspect:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+        border-color: #54a0ff;
+      }
+
+      .suspect-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        color: #ff9ff3;
+      }
+
+      .suspect-desc {
+        font-size: 0.9rem;
+        color: #a5b1c2;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #new-game {
+        background: #54a0ff;
+        color: white;
+      }
+
+      #new-game:hover {
+        background: #2e86de;
+        transform: scale(1.05);
+      }
+
+      #reveal {
+        background: #ff9ff3;
+        color: white;
+      }
+
+      #reveal:hover {
+        background: #f368e0;
+        transform: scale(1.05);
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .result {
+        text-align: center;
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        margin-top: 20px;
+        animation: fadeIn 1s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .correct {
+        color: #1dd1a1;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .wrong {
+        color: #ff6b6b;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .solution {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-top: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .killer-name {
+        color: #ff6b6b;
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+
+      .motive {
+        color: #ff9ff3;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Katil Kim?</h1>
+        <p class="subtitle">10 Farklı Gizemli Cinayet Senaryosu</p>
+      </header>
+
+      <div class="game-area">
+        <div class="story-section">
+          <h2 class="story-title" id="story-title">Yüksek Sosyete Cinayeti</h2>
+          <div class="story-text" id="story-text">
+            Zengin iş adamı Robert Blackwood, lüks malikanesinde ölü bulundu.
+            Düğün yıldönümü partisinin ardından sabah, hizmetçi onu kütüphanede
+            yerde yatarken buldu. Ölüm sebebi zehirlenme. Partiye katılan 4
+            şüpheli var.
+          </div>
+          <div class="victim-info">
+            <strong>Kurban:</strong> Robert Blackwood (55) - İş Adamı<br />
+            <strong>Olay Yeri:</strong> Blackwood Malikanesi - Kütüphane<br />
+            <strong>Zaman:</strong> Gece 23:00 - 02:00 arası<br />
+            <strong>Ölüm Sebebi:</strong> Zehirlenme
+          </div>
+        </div>
+
+        <div class="hints-section">
+          <h3>İpuçları (Tıklayarak Aç)</h3>
+          <div class="hint" onclick="revealHint(0)">
+            <div class="hint-title">İpucu 1: Kanıt</div>
+            <div class="hint-content hidden">
+              Kurbanın elinde mor bir iplik parçası bulundu.
+            </div>
+          </div>
+          <div class="hint" onclick="revealHint(1)">
+            <div class="hint-title">İpucu 2: Görgü Tanığı</div>
+            <div class="hint-content hidden">
+              Güvenlik kamerası, kurbanın partiden 1 saat önce kütüphaneye
+              girdiğini gösteriyor.
+            </div>
+          </div>
+          <div class="hint" onclick="revealHint(2)">
+            <div class="hint-title">İpucu 3: Fiziksel Bulgu</div>
+            <div class="hint-content hidden">
+              Kütüphanedeki pencereden dışarıya doğru ayak izleri var.
+            </div>
+          </div>
+          <div class="hint" onclick="revealHint(3)">
+            <div class="hint-title">İpucu 4: Kimyasal Analiz</div>
+            <div class="hint-content hidden">
+              Kurbanın içkisine nadir bir bitkisel zehir karıştırılmış.
+            </div>
+          </div>
+        </div>
+
+        <div class="suspects-section">
+          <div class="suspect" onclick="selectSuspect(0)">
+            <div class="suspect-name">Victoria Blackwood</div>
+            <div class="suspect-desc">
+              Kurbanın eşi. Robert'ın vasiyetinden büyük pay alacak.
+            </div>
+          </div>
+          <div class="suspect" onclick="selectSuspect(1)">
+            <div class="suspect-name">James Thornton</div>
+            <div class="suspect-desc">
+              İş ortağı. Son zamanlarda Robert ile anlaşmazlık yaşıyorlardı.
+            </div>
+          </div>
+          <div class="suspect" onclick="selectSuspect(2)">
+            <div class="suspect-name">Eleanor Gray</div>
+            <div class="suspect-desc">
+              Kurbanın yeğeni. Robert onun borçlarını ödemeyi reddetmişti.
+            </div>
+          </div>
+          <div class="suspect" onclick="selectSuspect(3)">
+            <div class="suspect-name">Thomas Reed</div>
+            <div class="suspect-desc">
+              Evden kovulan eski uşak. Partiye davet edilmemiş olmasına rağmen
+              oradaydı.
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button id="new-game">Yeni Senaryo</button>
+          <button id="reveal">Katili Açıkla</button>
+        </div>
+
+        <div id="result" class="hidden"></div>
+      </div>
+    </div>
+
+    <script>
+      // Senaryo veritabanı
+      const scenarios = [
+        {
+          title: "Yüksek Sosyete Cinayeti",
+          story:
+            "Zengin iş adamı Robert Blackwood, lüks malikanesinde ölü bulundu. Düğün yıldönümü partisinin ardından sabah, hizmetçi onu kütüphanede yerde yatarken buldu. Ölüm sebebi zehirlenme. Partiye katılan 4 şüpheli var.",
+          victim: "Robert Blackwood (55) - İş Adamı",
+          location: "Blackwood Malikanesi - Kütüphane",
+          time: "Gece 23:00 - 02:00 arası",
+          cause: "Zehirlenme",
+          hints: [
+            "Kurbanın elinde mor bir iplik parçası bulundu.",
+            "Güvenlik kamerası, kurbanın partiden 1 saat önce kütüphaneye girdiğini gösteriyor.",
+            "Kütüphanedeki pencereden dışarıya doğru ayak izleri var.",
+            "Kurbanın içkisine nadir bir bitkisel zehir karıştırılmış.",
+          ],
+          suspects: [
+            {
+              name: "Victoria Blackwood",
+              description:
+                "Kurbanın eşi. Robert'ın vasiyetinden büyük pay alacak.",
+            },
+            {
+              name: "James Thornton",
+              description:
+                "İş ortağı. Son zamanlarda Robert ile anlaşmazlık yaşıyorlardı.",
+            },
+            {
+              name: "Eleanor Gray",
+              description:
+                "Kurbanın yeğeni. Robert onun borçlarını ödemeyi reddetmişti.",
+            },
+            {
+              name: "Thomas Reed",
+              description:
+                "Evden kovulan eski uşak. Partiye davet edilmemiş olmasına rağmen oradaydı.",
+            },
+          ],
+          killer: 2, // Eleanor Gray
+          solution:
+            "Eleanor Gray, amcası Robert'ın borçlarını ödemeyi reddetmesi üzerine onu zehirlemişti. Mor iplik, Eleanor'ın o gece giydiği eldivenden geliyordu. Penceredeki ayak izleri, olaydan sonra kaçmaya çalıştığını gösteriyordu.",
+        },
+        {
+          title: "Müzedeki Gizem",
+          story:
+            "Ünlü arkeolog Dr. Amelia Vance, müzedeki özel sergi açılışında ölü bulundu. Mısır'dan getirilen nadir bir firavun yüzüğünü incelerken zehirlenmiş. Müze o gece sadece 4 kişi tarafından kullanılıyordu.",
+          victim: "Dr. Amelia Vance (42) - Arkeolog",
+          location: "Ulusal Tarih Müzesi - Eski Mısır Bölümü",
+          time: "Açılış gecesi 20:00 - 22:00 arası",
+          cause: "Zehirlenme",
+          hints: [
+            "Kurbanın cebinde müzenin anahtarının bir kopyası bulundu.",
+            "Müze güvenlik kayıtları silinmiş.",
+            "Kurbanın üzerinde eski bir Mısır sembolü çizilmiş not bulundu.",
+            "Zehir, kurbanın en sevdiği kahve markasında tespit edildi.",
+          ],
+          suspects: [
+            {
+              name: "Prof. Richard Stone",
+              description:
+                "Müze müdürü. Amelia ile aynı pozisyon için yarışıyorlardı.",
+            },
+            {
+              name: "Lisa Chen",
+              description:
+                "Müze asistanı. Amelia'nın araştırmalarını çalmakla suçlanıyordu.",
+            },
+            {
+              name: "Marcus Bell",
+              description:
+                "Güvenlik şefi. Amelia ile gizli bir ilişkisi vardı.",
+            },
+            {
+              name: "David Carter",
+              description:
+                "Sergi sponsoru. Amelia'nın son keşfini kendisine mal etmek istiyordu.",
+            },
+          ],
+          killer: 0, // Prof. Richard Stone
+          solution:
+            "Prof. Richard Stone, Amelia'nın terfi almasını engellemek için onu zehirlemişti. Müze anahtarını çalmış ve güvenlik kayıtlarını silmişti. Eski Mısır sembolü, Stone'un uzmanlık alanıydı.",
+        },
+        {
+          title: "Yat Kulübü Faciası",
+          story:
+            "Milyarder iş insanı Jonathan Pierce, lüks yatında ölü bulundu. Doğum günü partisi sırasında kimse fark etmeden kaybolmuş ve ertesi sabah güvertede ölü bulunmuş. Ölüm sebebi boğulma ama vücudunda darp izleri var.",
+          victim: "Jonathan Pierce (48) - Milyarder İş İnsanı",
+          location: "Sapphire Yatı - Ana Güverte",
+          time: "Doğum günü partisi sırasında 21:00 - 23:00",
+          cause: "Boğulma (Şüpheli)",
+          hints: [
+            "Kurbanın cebinde ıslak bir mektup parçası bulundu.",
+            "Yatın güvenlik kameraları o gece arızalıydı.",
+            "Kurbanın kolunda mor bir yara izi vardı.",
+            "Güvertede kurbanın kanına bulanmış bir saat bulundu.",
+          ],
+          suspects: [
+            {
+              name: "Olivia Pierce",
+              description:
+                "Kurbanın eşi. Jonathan'ın vasiyetinden büyük miras alacak.",
+            },
+            {
+              name: "Alex Rivera",
+              description:
+                "İş ortağı. Jonathan tarafından dolandırıldığını iddia ediyor.",
+            },
+            {
+              name: "Captain Miles",
+              description: "Yat kaptanı. Jonathan ile sık sık tartışıyorlardı.",
+            },
+            {
+              name: "Sophia Lee",
+              description:
+                "Kişisel asistan. Jonathan'ın ölümünden bir gün önce işten atılmıştı.",
+            },
+          ],
+          killer: 1, // Alex Rivera
+          solution:
+            "Alex Rivera, Jonathan'ın kendisini dolandırdığını öğrenince onu güverteden iterek öldürmüştü. Islak mektup, Alex'in Jonathan'a yazdığı tehdit mektubuydu. Kolundaki yara, Jonathan'ın kendini savunurken Alex'i ısırmasından kaynaklanıyordu.",
+        },
+        {
+          title: "Sanat Galerisi Skandalı",
+          story:
+            "Ünlü ressam Elena Moreau, yeni tablosunun galeri açılışında ölü bulundu. Açılış sırasında bir süreliğine kaybolmuş ve ofisinde bilincini kaybetmiş halde bulunmuş. Ölüm sebebi kalp krizi gibi görünüyor ama şüpheli bulgular var.",
+          victim: "Elena Moreau (38) - Ressam",
+          location: "Modern Art Gallery - Sanatçı Ofisi",
+          time: "Açılış gecesi 19:30 - 21:00 arası",
+          cause: "Kalp Krizi (Şüpheli)",
+          hints: [
+            "Kurbanın çantasında bilinmeyen bir ilacın reçetesi bulundu.",
+            "Ofiste kırık bir vazo ve dağınık kağıtlar vardı.",
+            "Kurbanın telefonunda silinmemiş bir ses kaydı bulundu.",
+            "Galerinin arka kapısının kilidi zorlanmıştı.",
+          ],
+          suspects: [
+            {
+              name: "Marco Moreau",
+              description:
+                "Kurbanın kocası ve menajeri. Elena'nın onu terk etmek istediğini biliyordu.",
+            },
+            {
+              name: "Isabelle Durant",
+              description: "Rakip ressam. Elena'nın başarısını kıskanıyordu.",
+            },
+            {
+              name: "Gallery Owner",
+              description:
+                "Galeri sahibi. Elena ile sözleşme anlaşmazlığı yaşıyorlardı.",
+            },
+            {
+              name: "Victor Chen",
+              description:
+                "Sanat eleştirmeni. Elena'nın son sergisi hakkında yıkıcı bir eleştiri yazmıştı.",
+            },
+          ],
+          killer: 0, // Marco Moreau
+          solution:
+            "Marco Moreau, karısının kendisini terk edeceğini öğrenince onun kalp ilacını değiştirerek ölümüne neden oldu. Ofisteki kavga izleri ve ses kaydı, Marco'nun tehditlerini kanıtlıyordu.",
+        },
+        {
+          title: "Lüks Otel Gizemi",
+          story:
+            "Ünlü moda tasarımcısı Isabella Rossi, lüks otel suitinde ölü bulundu. Paris Moda Haftası için kente gelmişti ve o gece önemli bir defileye hazırlanıyordu. Ölüm sebebi yüksek doz uyku hapı.",
+          victim: "Isabella Rossi (35) - Moda Tasarımcısı",
+          location: "Grand Plaza Hotel - Penthouse Suite",
+          time: "Akşam 18:00 - 20:00 arası",
+          cause: "Aşırı Doz İlaç",
+          hints: [
+            "Kurbanın odasında yırtılmış bir tasarım çizimi bulundu.",
+            "Oda servisi kayıtlarında Isabella'nın sipariş etmediği içecekler vardı.",
+            "Kurbanın bilgisayarında silinmek üzere olan bir e-posta bulundu.",
+            "Banyoda kırık bir parfüm şişesi ve kan izleri vardı.",
+          ],
+          suspects: [
+            {
+              name: "Antonio Bianchi",
+              description:
+                "İş ortağı. Isabella ile şirketin yönetimi konusunda anlaşmazlık yaşıyorlardı.",
+            },
+            {
+              name: "Chloe Dubois",
+              description:
+                "Rakip tasarımcı. Isabella'nın tasarımlarını çalmakla suçlanıyordu.",
+            },
+            {
+              name: "Hotel Manager",
+              description:
+                "Otel müdürü. Isabella'nın şikayetleri nedeniyle işi tehlikedeydi.",
+            },
+            {
+              name: "Marco Rossi",
+              description:
+                "Kurbanın kardeşi. Isabella'nın vasiyetinden büyük pay alacak.",
+            },
+          ],
+          killer: 1, // Chloe Dubois
+          solution:
+            "Chloe Dubois, Isabella'nın yeni tasarımlarını çalmak için odaya girmiş ve yakalanınca kavga etmişlerdi. Isabella'yı etkisiz hale getirmek için içeceğine uyku hapı karıştırmış, ancak doz aşımından ölümüne neden olmuştu.",
+        },
+        {
+          title: "Kütüphane Cinayeti",
+          story:
+            "Üniversite profesörü Dr. Samuel Wright, kampüs kütüphanesinde ölü bulundu. Gece geç saatlerde araştırma yapıyordu ve güvenlik görevlisi onu masasında başından vurulmuş halde buldu. O gece kütüphanede sadece 4 kişi vardı.",
+          victim: "Dr. Samuel Wright (52) - Tarih Profesörü",
+          location: "Üniversite Kütüphanesi - Araştırma Bölümü",
+          time: "Gece 22:00 - 23:30 arası",
+          cause: "Silahla Vurulma",
+          hints: [
+            "Kurbanın masasında eski bir harita ve üzerine yazılmış notlar vardı.",
+            "Kütüphanenin acil çıkış kapısı açıktı.",
+            "Kurbanın cebinde bir öğrenci kimliği bulundu.",
+            "Masaüstünde parmak izi olmayan bir kalem vardı.",
+          ],
+          suspects: [
+            {
+              name: "Prof. Elizabeth Grant",
+              description:
+                "Bölüm başkanı. Samuel ile terfi konusunda rekabet ediyorlardı.",
+            },
+            {
+              name: "Michael Torres",
+              description:
+                "Doktora öğrencisi. Samuel'in tez danışmanlığını bırakmasından korkuyordu.",
+            },
+            {
+              name: "Sarah Jenkins",
+              description:
+                "Kütüphaneci. Samuel'in kendisini işten attırmaya çalıştığını düşünüyordu.",
+            },
+            {
+              name: "Robert Miller",
+              description:
+                "Eski öğrenci. Samuel tarafından haksız yere sınıfta bırakıldığını iddia ediyordu.",
+            },
+          ],
+          killer: 3, // Robert Miller
+          solution:
+            "Robert Miller, Samuel'in kendisini haksız yere sınıfta bıraktığını düşünüyordu ve intikam almak istedi. Acil çıkış kapısından girip Samuel'i vurmuştu. Kalem, cinayet silahını temizlemek için kullanılmıştı.",
+        },
+        {
+          title: "Kumarhane Soygunu",
+          story:
+            "Kumarhane sahibi Vincent Moretti, ofisinde ölü bulundu. Büyük miktarda nakit para çalınmış ve güvenlik sistemi devre dışı bırakılmış. Ölüm sebebi kesici alet yaralanması.",
+          victim: "Vincent Moretti (60) - Kumarhane Sahibi",
+          location: "Royal Casino - Özel Ofis",
+          time: "Gece 02:00 - 04:00 arası",
+          cause: "Kesici Alet Yaralanması",
+          hints: [
+            "Kurbanın masasında yarım kalmış bir mektup vardı.",
+            "Güvenlik kayıtlarında 5 dakikalık bir boşluk var.",
+            "Ofiste kokain izleri bulundu.",
+            "Kurbanın telefonunda silinmiş bir mesaj bulundu.",
+          ],
+          suspects: [
+            {
+              name: "Frank Costello",
+              description:
+                "Kumarhane müdürü. Vincent'ın onu işten atacağı söylentileri vardı.",
+            },
+            {
+              name: "Gina Moretti",
+              description:
+                "Kurbanın kızı. Babasının vasiyetini değiştirdiğini yeni öğrenmişti.",
+            },
+            {
+              name: "Tony 'The Blade'",
+              description:
+                "Yerel mafya lideri. Vincent'dan koruma parası istiyordu.",
+            },
+            {
+              name: "Detective Harris",
+              description:
+                "Yolsuzlukla suçlanan polis memuru. Vincent onu ihbar etmekle tehdit ediyordu.",
+            },
+          ],
+          killer: 2, // Tony 'The Blade'
+          solution:
+            "Tony 'The Blade', Vincent'dan koruma parası alamayınca onu öldürüp kasayı soymuştu. Güvenlik kaydındaki boşluk, Tony'nin sistemi nasıl devre dışı bıraktığını gösteriyordu. Kokain, Tony'nin ofiste işini kolaylaştırmak için kullandığı bir yöntemdi.",
+        },
+        {
+          title: "Yatılı Okul Gizemi",
+          story:
+            "Özel yatılı okul müdürü Headmaster Croft, okul kulesinde ölü bulundu. Okulun 100. yıl kutlamaları sırasında kaybolmuş ve ertesi sabah kuleden düşmüş halde bulunmuş. Ölüm kaza gibi görünüyor ama şüpheli durumlar var.",
+          victim: "Headmaster Alistair Croft (58) - Okul Müdürü",
+          location: "St. Mary's Yatılı Okulu - Ana Kule",
+          time: "Kutlama sırasında 20:00 - 22:00",
+          cause: "Düşme",
+          hints: [
+            "Kulede mücadele izleri vardı.",
+            "Kurbanın cebinde eski bir mezun mektubu bulundu.",
+            "Kuledeki bir pencere kırıktı.",
+            "Kurbanın odasında gizli bir kasası vardı.",
+          ],
+          suspects: [
+            {
+              name: "Mrs. Davison",
+              description:
+                "Müdür yardımcısı. Croft'ın emekli olmasını bekliyordu.",
+            },
+            {
+              name: "Mr. Fletcher",
+              description:
+                "Matematik öğretmeni. Croft tarafından işten atılma tehlikesi vardı.",
+            },
+            {
+              name: "Lucy Croft",
+              description:
+                "Kurbanın kızı. Babasının okulu kapatacağını yeni öğrenmişti.",
+            },
+            {
+              name: "Groundskeeper Joe",
+              description:
+                "Okul bahçıvanı. Croft'ın okul arazisini satmayı planladığını biliyordu.",
+            },
+          ],
+          killer: 3, // Groundskeeper Joe
+          solution:
+            "Groundskeeper Joe, okulun kapanacağını ve işini kaybedeceğini öğrenince Croft'ı kuleden itmişti. Eski mezun mektubu, Joe'nun okulla olan bağını gösteriyordu. Kulenin penceresi, mücadele sırasında kırılmıştı.",
+        },
+        {
+          title: "Tiyatro Baskını",
+          story:
+            "Ünlü oyuncu Sebastian Wilde, tiyatro sahnesinde ölü bulundu. Oyunun prömiyer gecesi sahne arasında kaybolmuş ve perdenin arkasında bıçaklanmış halde bulunmuş. O gece tiyatroda sadece 4 kişi vardı.",
+          victim: "Sebastian Wilde (45) - Oyuncu",
+          location: "Royal Tiyatrosu - Ana Sahne",
+          time: "Prömiyer gecesi 20:30 - 21:15 arası",
+          cause: "Bıçaklama",
+          hints: [
+            "Sahne arkasında düşmüş bir mücevher bulundu.",
+            "Kurbanın telefonunda silinmemiş bir ses mesajı vardı.",
+            "Sahne ışıkları o sırada arızalıydı.",
+            "Kostüm odasında kanlı bir eldiven bulundu.",
+          ],
+          suspects: [
+            {
+              name: "Victoria Sterling",
+              description:
+                "Başrol oyuncusu. Sebastian'ın onu sahnede küçük düşürmesinden nefret ediyordu.",
+            },
+            {
+              name: "Director Kingsley",
+              description:
+                "Yönetmen. Sebastian'ın kontratını yenilemeyeceğini açıklamıştı.",
+            },
+            {
+              name: "Stage Manager",
+              description:
+                "Sahne amiri. Sebastian ile sık sık tartışıyorlardı.",
+            },
+            {
+              name: "Lena Petrova",
+              description:
+                "Sebastian'ın eski eşi. Sebastian'ın nafakayı kesmek istediğini biliyordu.",
+            },
+          ],
+          killer: 0, // Victoria Sterling
+          solution:
+            "Victoria Sterling, Sebastian'ın sahnede kendisini küçük düşürmesine dayanamayıp onu bıçaklamıştı. Mücevher, Victoria'nın takısıydı ve mücadele sırasında düşmüştü. Sahne ışıklarının arızası, Victoria'nın işini kolaylaştırmıştı.",
+        },
+        {
+          title: "Yazlık Konak Trajedisi",
+          story:
+            "Emekli yargıç Sir Reginald Ashworth, yazlık konağında ölü bulundu. Hafta sonu misafirleri vardı ve sabah kahvaltıya gelmeyince odasında ölü bulundu. Ölüm sebebi kalp krizi gibi görünüyor ama şüpheli durumlar var.",
+          victim: "Sir Reginald Ashworth (72) - Emekli Yargıç",
+          location: "Ashworth Malikanesi - Yatak Odası",
+          time: "Gece 23:00 - 03:00 arası",
+          cause: "Kalp Krizi (Şüpheli)",
+          hints: [
+            "Kurbanın yatağının yanında düşmüş bir ilaç şişesi vardı.",
+            "Odanın penceresi kırıktı.",
+            "Kurbanın masasında eski bir dava dosyası vardı.",
+            "Banyoda ıslak bir havlu ve kan izleri vardı.",
+          ],
+          suspects: [
+            {
+              name: "Lady Ashworth",
+              description:
+                "Kurbanın eşi. Reginald'ın vasiyetinden büyük miras alacak.",
+            },
+            {
+              name: "Andrew Ashworth",
+              description: "Kurbanın oğlu. Babasının işlerini batırmıştı.",
+            },
+            {
+              name: "Martha Simmons",
+              description:
+                "Evden kovulan hizmetçi. Reginald'ı şantaj yapıyordu.",
+            },
+            {
+              name: "Dr. Benjamin Reed",
+              description:
+                "Aile doktoru. Reginald'ın sağlık durumunu kötüye kullanıyordu.",
+            },
+          ],
+          killer: 3, // Dr. Benjamin Reed
+          solution:
+            "Dr. Benjamin Reed, Reginald'ın ilaçlarını değiştirerek onun ölümüne neden olmuştu. Eski dava dosyası, Reed'in geçmişte yargılandığı bir davaydı ve Reginald bunu öğrenmişti. Penceredeki kırık, Reed'in olay yerinden kaçmak için kullandığı yoldu.",
+        },
+      ];
+
+      let currentScenario;
+      let selectedSuspect = null;
+
+      // Sayfa yüklendiğinde rastgele bir senaryo seç
+      window.onload = function () {
+        selectRandomScenario();
+        document
+          .getElementById("new-game")
+          .addEventListener("click", selectRandomScenario);
+        document
+          .getElementById("reveal")
+          .addEventListener("click", revealKiller);
+      };
+
+      // Rastgele senaryo seçme
+      function selectRandomScenario() {
+        const randomIndex = Math.floor(Math.random() * scenarios.length);
+        currentScenario = scenarios[randomIndex];
+        selectedSuspect = null;
+
+        // Senaryo bilgilerini güncelle
+        document.getElementById("story-title").textContent =
+          currentScenario.title;
+        document.getElementById("story-text").textContent =
+          currentScenario.story;
+
+        // Kurban bilgilerini güncelle
+        const victimInfo = document.querySelector(".victim-info");
+        victimInfo.innerHTML = `
+                <strong>Kurban:</strong> ${currentScenario.victim}<br>
+                <strong>Olay Yeri:</strong> ${currentScenario.location}<br>
+                <strong>Zaman:</strong> ${currentScenario.time}<br>
+                <strong>Ölüm Sebebi:</strong> ${currentScenario.cause}
+            `;
+
+        // İpuçlarını güncelle
+        const hintsContainer = document.querySelector(".hints-section");
+        hintsContainer.innerHTML = "<h3>İpuçları (Tıklayarak Aç)</h3>";
+
+        currentScenario.hints.forEach((hint, index) => {
+          const hintElement = document.createElement("div");
+          hintElement.className = "hint";
+          hintElement.setAttribute("onclick", `revealHint(${index})`);
+          hintElement.innerHTML = `
+                    <div class="hint-title">İpucu ${index + 1}</div>
+                    <div class="hint-content hidden">${hint}</div>
+                `;
+          hintsContainer.appendChild(hintElement);
+        });
+
+        // Şüphelileri güncelle
+        const suspectsContainer = document.querySelector(".suspects-section");
+        suspectsContainer.innerHTML = "";
+
+        currentScenario.suspects.forEach((suspect, index) => {
+          const suspectElement = document.createElement("div");
+          suspectElement.className = "suspect";
+          suspectElement.setAttribute("onclick", `selectSuspect(${index})`);
+          suspectElement.innerHTML = `
+                    <div class="suspect-name">${suspect.name}</div>
+                    <div class="suspect-desc">${suspect.description}</div>
+                `;
+          suspectsContainer.appendChild(suspectElement);
+        });
+
+        // Sonuç bölümünü gizle
+        document.getElementById("result").classList.add("hidden");
+        document.getElementById("result").innerHTML = "";
+
+        // Tüm şüphelilerin seçimini temizle
+        document.querySelectorAll(".suspect").forEach((suspect) => {
+          suspect.style.borderColor = "transparent";
+          suspect.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+        });
+      }
+
+      // İpucu gösterme
+      function revealHint(index) {
+        const hintContents = document.querySelectorAll(".hint-content");
+        hintContents[index].classList.toggle("hidden");
+      }
+
+      // Şüpheli seçme
+      function selectSuspect(index) {
+        selectedSuspect = index;
+
+        // Tüm şüphelilerin seçimini temizle
+        document.querySelectorAll(".suspect").forEach((suspect) => {
+          suspect.style.borderColor = "transparent";
+          suspect.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+        });
+
+        // Seçilen şüpheliyi vurgula
+        const selectedElement = document.querySelectorAll(".suspect")[index];
+        selectedElement.style.borderColor = "#54a0ff";
+        selectedElement.style.backgroundColor = "rgba(84, 160, 255, 0.2)";
+      }
+
+      // Katili açıklama
+      function revealKiller() {
+        const resultDiv = document.getElementById("result");
+        resultDiv.classList.remove("hidden");
+
+        if (selectedSuspect === null) {
+          resultDiv.innerHTML = `
+                    <div class="wrong">Lütfen bir şüpheli seçin!</div>
+                `;
+          return;
+        }
+
+        if (selectedSuspect === currentScenario.killer) {
+          resultDiv.innerHTML = `
+                    <div class="correct">Tebrikler! Doğru Tahmin!</div>
+                    <div class="solution">
+                        <span class="killer-name">${
+                          currentScenario.suspects[currentScenario.killer].name
+                        }</span> katildi!<br><br>
+                        <span class="motive">${currentScenario.solution}</span>
+                    </div>
+                `;
+          createConfetti();
+        } else {
+          resultDiv.innerHTML = `
+                    <div class="wrong">Yanlış Tahmin!</div>
+                    <div class="solution">
+                        Doğru cevap: <span class="killer-name">${
+                          currentScenario.suspects[currentScenario.killer].name
+                        }</span><br><br>
+                        <span class="motive">${currentScenario.solution}</span>
+                    </div>
+                `;
+        }
+      }
+
+      // Konfeti animasyonu
+      function createConfetti() {
+        const colors = [
+          "#ff6b6b",
+          "#ff9ff3",
+          "#54a0ff",
+          "#1dd1a1",
+          "#feca57",
+          "#ff9f43",
+        ];
+
+        for (let i = 0; i < 150; i++) {
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+          confetti.style.width = Math.random() * 10 + 5 + "px";
+          confetti.style.height = Math.random() * 10 + 5 + "px";
+
+          document.body.appendChild(confetti);
+
+          // Animasyon bitince konfetiyi kaldır
+          setTimeout(() => {
+            confetti.remove();
+          }, 5000);
+        }
+      }
+    </script>
+  </body>
+</html>

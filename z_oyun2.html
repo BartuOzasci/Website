@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <style>
+    /* Genel Body ve Arka Plan */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: url("images/oyunlararkaplan.jpg") center/cover no-repeat fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Gradient Karartma */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 0;
+    }
+
+    /* Oyun Menüsü Butonu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 102, 0, 0.9);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 2;
+    }
+    .menu-btn:hover {
+      background: #cc5200;
+    }
+    .menu-btn .material-icons {
+      font-size: 20px;
+    }
+
+    /* Oyun Container */
+    .game-container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Başlık */
+    .game-container h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-align: center;
+      border-bottom: 3px solid #ff6600;
+      padding-bottom: 10px;
+    }
+
+    /* Input ve Button */
+    .input-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #guess-input {
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      width: 150px;
+    }
+
+    #guess-btn {
+      padding: 8px 12px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #ff6600;
+      color: #fff;
+      cursor: pointer;
+    }
+    #guess-btn:hover {
+      background-color: #cc5200;
+    }
+
+    /* Mesaj */
+    #message {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* Tekrar Oyna Butonu */
+    #restart-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff6600;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+    }
+    #restart-btn:hover {
+      background-color: #cc5200;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .input-section {
+        flex-direction: column;
+        gap: 10px;
+      }
+      #guess-input {
+        width: 120px;
+      }
+      .game-container h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Bartu ÖZAŞÇI Sayı Tahmin Oyunu 1-1000, responsive ve eğlenceli"
+    />
+    <title>Sayı Tahmin Oyunu</title>
+
+    <!-- Google Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Oyun Menüsü Butonu -->
+
+    <div class="game-container">
+      <h1>Sayı Tahmin Oyunu</h1>
+
+      <div class="input-section">
+        <input
+          type="number"
+          id="guess-input"
+          placeholder="1-1000 arası sayı girin"
+          min="1"
+          max="1000"
+        />
+        <button id="guess-btn">Tahmin Et</button>
+      </div>
+
+      <div id="message"></div>
+      <button id="restart-btn">Tekrar Oyna</button>
+    </div>
+
+    <script src="sayi.js"></script>
+  </body>
+  <script>
+    const guessInput = document.getElementById("guess-input");
+    const guessBtn = document.getElementById("guess-btn");
+    const message = document.getElementById("message");
+    const restartBtn = document.getElementById("restart-btn");
+
+    let randomNumber = Math.floor(Math.random() * 1000) + 1;
+    let attempts = 0;
+
+    function resetGame() {
+      randomNumber = Math.floor(Math.random() * 1000) + 1;
+      attempts = 0;
+      message.textContent = "";
+      guessInput.value = "";
+      restartBtn.style.display = "none";
+      guessBtn.disabled = false;
+    }
+
+    guessBtn.addEventListener("click", () => {
+      const guess = parseInt(guessInput.value);
+      if (!guess || guess < 1 || guess > 1000) {
+        message.textContent = "Lütfen 1 ile 1000 arasında bir sayı girin.";
+        return;
+      }
+      attempts++;
+      if (guess === randomNumber) {
+        message.textContent = `🎉 Tebrikler! Sayıyı ${attempts} denemede buldunuz.`;
+        restartBtn.style.display = "inline-block";
+        guessBtn.disabled = true;
+      } else if (guess < randomNumber) {
+        message.textContent = "⬆ Daha büyük bir sayı girin.";
+      } else {
+        message.textContent = "⬇ Daha küçük bir sayı girin.";
+      }
+    });
+
+    restartBtn.addEventListener("click", resetGame);
+  </script>
+</html>
