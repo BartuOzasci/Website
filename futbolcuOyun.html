@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Futbolcu Wordle</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #ffd166;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #9aa6b2;
+      }
+
+      .game-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .info-label {
+        font-size: 0.9rem;
+        color: #9aa6b2;
+        margin-bottom: 5px;
+      }
+
+      .info-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffd166;
+      }
+
+      .game-board {
+        margin: 20px 0;
+      }
+
+      .guess-row {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .letter-tile {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .letter-tile.filled {
+        border-color: rgba(255, 255, 255, 0.5);
+        animation: pop 0.1s ease;
+      }
+
+      .letter-tile.correct {
+        background: #2ecc71;
+        border-color: #2ecc71;
+        transform: scale(1.05);
+      }
+
+      .letter-tile.present {
+        background: #f39c12;
+        border-color: #f39c12;
+        transform: scale(1.05);
+      }
+
+      .letter-tile.absent {
+        background: #7f8c8d;
+        border-color: #7f8c8d;
+      }
+
+      .space-tile {
+        width: 20px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: transparent;
+        border: none;
+      }
+
+      @keyframes pop {
+        0% {
+          transform: scale(0.8);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      .shake {
+        animation: shake 0.5s ease;
+      }
+
+      .input-area {
+        margin: 20px 0;
+      }
+
+      #guessInput {
+        width: 100%;
+        padding: 15px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      button {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #submitButton {
+        background: #ff6b35;
+        color: white;
+        width: 100%;
+      }
+
+      #submitButton:hover {
+        background: #ff8c5a;
+        transform: translateY(-2px);
+      }
+
+      #resetButton {
+        background: #3498db;
+        color: white;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      #resetButton:hover {
+        background: #5dade2;
+        transform: translateY(-2px);
+      }
+
+      .keyboard {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 20px 0;
+      }
+
+      .keyboard-row {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .key {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex: 1;
+        max-width: 40px;
+        text-transform: uppercase;
+      }
+
+      .key.wide {
+        max-width: 70px;
+        font-size: 0.8rem;
+      }
+
+      .key:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .key.correct {
+        background: #2ecc71;
+      }
+
+      .key.present {
+        background: #f39c12;
+      }
+
+      .key.absent {
+        background: #7f8c8d;
+      }
+
+      .message {
+        font-size: 1.2rem;
+        margin: 20px 0;
+        min-height: 30px;
+        font-weight: bold;
+      }
+
+      .success {
+        color: #2ecc71;
+      }
+
+      .error {
+        color: #e74c3c;
+      }
+
+      .celebration {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #ffd166;
+        text-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
+        animation: celebrate 1s infinite alternate;
+        margin: 20px 0;
+      }
+
+      @keyframes celebrate {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes flip {
+        0% {
+          transform: rotateX(0);
+        }
+        50% {
+          transform: rotateX(-90deg);
+        }
+        100% {
+          transform: rotateX(0);
+        }
+      }
+
+      .flip {
+        animation: flip 0.5s ease;
+      }
+
+      @media (max-width: 500px) {
+        .letter-tile {
+          width: 35px;
+          height: 35px;
+          font-size: 1.5rem;
+        }
+
+        .space-tile {
+          width: 15px;
+          height: 35px;
+        }
+
+        #guessInput {
+          font-size: 1.2rem;
+          padding: 12px;
+        }
+
+        button {
+          padding: 12px 20px;
+          font-size: 1rem;
+        }
+
+        .key {
+          height: 45px;
+          max-width: 35px;
+        }
+
+        .key.wide {
+          max-width: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Futbolcu Wordle</h1>
+      <p class="subtitle">Futbolcu ismini 6 denemede bul!</p>
+
+      <div class="game-info">
+        <div class="info-item">
+          <div class="info-label">Kalan Deneme</div>
+          <div class="info-value" id="remainingAttempts">6</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Skor</div>
+          <div class="info-value" id="score">0</div>
+        </div>
+      </div>
+
+      <div class="game-board" id="gameBoard">
+        <!-- Oyun tahtası buraya eklenecek -->
+      </div>
+
+      <div class="message" id="message"></div>
+
+      <div class="input-area">
+        <input
+          type="text"
+          id="guessInput"
+          placeholder="Futbolcu ismini yazın"
+          autocomplete="off"
+        />
+        <button id="submitButton">Tahmin Et</button>
+        <button id="resetButton">Yeni Oyun</button>
+      </div>
+
+      <div class="keyboard" id="keyboard">
+        <!-- Klavye buraya eklenecek -->
+      </div>
+    </div>
+
+    <script>
+      // Futbolcu isimleri havuzu
+      let footballPlayers = [];
+
+      // Oyun değişkenleri
+      let targetPlayer = "";
+      let targetPlayerWithoutSpaces = "";
+      let currentGuess = "";
+      let guesses = [];
+      let remainingAttempts = 6;
+      let score = 0;
+      let gameOver = false;
+      let currentRow = 0;
+      let currentTile = 0;
+
+      // DOM elementleri
+      const gameBoard = document.getElementById("gameBoard");
+      const guessInput = document.getElementById("guessInput");
+      const submitButton = document.getElementById("submitButton");
+      const resetButton = document.getElementById("resetButton");
+      const messageEl = document.getElementById("message");
+      const remainingAttemptsEl = document.getElementById("remainingAttempts");
+      const scoreEl = document.getElementById("score");
+      const keyboardEl = document.getElementById("keyboard");
+
+      // Futbolcu isimlerini dosyadan yükle
+      async function loadFootballPlayers() {
+        try {
+          // Dosya yolunu kendi dosyanıza göre güncelleyin
+          const response = await fetch("footballer.txt");
+          if (!response.ok) {
+            throw new Error("Dosya yüklenemedi");
+          }
+          const text = await response.text();
+          // Dosyayı satır satır oku ve boş satırları filtrele
+          footballPlayers = text
+            .split("\n")
+            .map((name) => name.trim().toUpperCase())
+            .filter((name) => name.length > 0);
+
+          // Eğer dosya boşsa, yedek liste kullan
+          if (footballPlayers.length === 0) {
+            throw new Error("Dosya boş");
+          }
+
+          console.log(`${footballPlayers.length} futbolcu ismi yüklendi`);
+        } catch (error) {
+          console.error("Futbolcu isimleri yüklenirken hata:", error);
+          // Yedek futbolcu listesi (boşluklu isimler dahil)
+          footballPlayers = [
+            "DE LIGT",
+            "VAN DIJK",
+            "DE BRUYNE",
+            "VAN PERSIE",
+            "VAN NISTELROOY",
+            "MESSI",
+            "RONALDO",
+            "NEYMAR",
+            "MBAPPE",
+            "HAALAND",
+            "MODRIC",
+            "SALAH",
+            "KANE",
+            "LEWANDOWSKI",
+            "BENZEMA",
+            "MANE",
+            "STERLING",
+            "KANTE",
+            "KROOS",
+            "POGBA",
+            "LUKAKU",
+            "DYBALA",
+            "GRIEZMANN",
+            "OBLAK",
+            "TER STEGEN",
+            "ALABA",
+            "RAMOS",
+            "MARQUINHOS",
+            "KIMPEMBE",
+            "HAVERTZ",
+            "FODEN",
+            "SANCHO",
+            "RASHFORD",
+            "BRUNO",
+            "CASEMIRO",
+            "VALVERDE",
+            "PEDRI",
+            "GAVI",
+            "DEMBELE",
+            "COUMANE",
+            "ALVAREZ",
+            "JULIAN",
+            "ENZO",
+            "MAC ALLISTER",
+            "LAUTARO",
+            "MARTINEZ",
+            "DI BALA",
+            "CHIESA",
+            "BARELLA",
+            "BASTONI",
+            "DONNARUMMA",
+            "MAIGNAN",
+          ];
+          console.log("Yedek futbolcu listesi kullanılıyor");
+        }
+      }
+
+      // Klavye tuşlarını oluştur
+      function createKeyboard() {
+        const keyboardRows = [
+          ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+          ["A", "S", "D", "F", "G", "H", "J", "K", "L", "İ"],
+          [
+            "ENTER",
+            "Z",
+            "X",
+            "C",
+            "V",
+            "B",
+            "N",
+            "M",
+            "Ö",
+            "Ç",
+            "Ü",
+            "Ş",
+            "Ğ",
+            "DEL",
+          ],
+        ];
+
+        keyboardEl.innerHTML = "";
+
+        keyboardRows.forEach((row) => {
+          const rowEl = document.createElement("div");
+          rowEl.className = "keyboard-row";
+
+          row.forEach((key) => {
+            const keyEl = document.createElement("div");
+            keyEl.className = "key";
+            keyEl.textContent = key;
+
+            if (key === "ENTER" || key === "DEL") {
+              keyEl.classList.add("wide");
+            }
+
+            keyEl.addEventListener("click", () => handleKeyPress(key));
+            rowEl.appendChild(keyEl);
+          });
+
+          keyboardEl.appendChild(rowEl);
+        });
+      }
+
+      // Rastgele futbolcu seç
+      function selectRandomPlayer() {
+        const randomIndex = Math.floor(Math.random() * footballPlayers.length);
+        return footballPlayers[randomIndex];
+      }
+
+      // Oyun tahtasını oluştur
+      function createGameBoard() {
+        gameBoard.innerHTML = "";
+
+        for (let i = 0; i < 6; i++) {
+          const rowEl = document.createElement("div");
+          rowEl.className = "guess-row";
+          rowEl.id = `row-${i}`;
+
+          // Boşlukları da dahil ederek kutuları oluştur
+          let tileIndex = 0;
+          for (let j = 0; j < targetPlayer.length; j++) {
+            if (targetPlayer[j] === " ") {
+              // Boşluk için özel bir kutu oluştur
+              const spaceTile = document.createElement("div");
+              spaceTile.className = "space-tile";
+              spaceTile.textContent = "";
+              rowEl.appendChild(spaceTile);
+            } else {
+              // Harf için normal kutu oluştur
+              const tileEl = document.createElement("div");
+              tileEl.className = "letter-tile";
+              tileEl.id = `tile-${i}-${tileIndex}`;
+              rowEl.appendChild(tileEl);
+              tileIndex++;
+            }
+          }
+
+          gameBoard.appendChild(rowEl);
+        }
+      }
+
+      // Oyunu başlat
+      function initGame() {
+        targetPlayer = selectRandomPlayer();
+        targetPlayerWithoutSpaces = targetPlayer.replace(/\s/g, "");
+        currentGuess = "";
+        guesses = [];
+        remainingAttempts = 6;
+        gameOver = false;
+        currentRow = 0;
+        currentTile = 0;
+
+        createGameBoard();
+        createKeyboard();
+        updateMessage("İlk futbolcu ismini tahmin et!");
+        updateRemainingAttempts();
+        updateScore();
+
+        // Input'a odaklan
+        guessInput.focus();
+        guessInput.value = "";
+
+        console.log("Hedef futbolcu:", targetPlayer);
+        console.log("Boşluksuz hedef:", targetPlayerWithoutSpaces);
+      }
+
+      // Kalan denemeleri güncelle
+      function updateRemainingAttempts() {
+        remainingAttemptsEl.textContent = remainingAttempts;
+      }
+
+      // Skoru güncelle
+      function updateScore() {
+        scoreEl.textContent = score;
+      }
+
+      // Mesajı güncelle
+      function updateMessage(text, type = "") {
+        messageEl.textContent = text;
+        messageEl.className = "message";
+
+        if (type === "success") {
+          messageEl.classList.add("success");
+        } else if (type === "error") {
+          messageEl.classList.add("error");
+        }
+      }
+
+      // Harf ekle
+      function addLetter(letter) {
+        if (currentTile < targetPlayerWithoutSpaces.length && !gameOver) {
+          currentGuess += letter;
+
+          // Kutuları güncelle
+          updateTilesFromCurrentGuess();
+        }
+      }
+
+      // Harf sil
+      function deleteLetter() {
+        if (currentTile > 0 && !gameOver) {
+          currentGuess = currentGuess.slice(0, -1);
+          currentTile--;
+
+          // Kutuları güncelle
+          updateTilesFromCurrentGuess();
+        }
+      }
+
+      // Mevcut tahmine göre kutuları güncelle
+      function updateTilesFromCurrentGuess() {
+        // Mevcut satırı temizle
+        for (let i = 0; i < targetPlayerWithoutSpaces.length; i++) {
+          const tile = document.getElementById(`tile-${currentRow}-${i}`);
+          if (tile) {
+            tile.textContent = "";
+            tile.classList.remove(
+              "filled",
+              "correct",
+              "present",
+              "absent",
+              "flip"
+            );
+          }
+        }
+
+        // Yeni harfleri ekle
+        for (let i = 0; i < currentGuess.length; i++) {
+          const tile = document.getElementById(`tile-${currentRow}-${i}`);
+          if (tile) {
+            tile.textContent = currentGuess[i];
+            tile.classList.add("filled");
+          }
+        }
+
+        // Input değerini güncelle
+        guessInput.value = currentGuess;
+        currentTile = currentGuess.length;
+      }
+
+      // Tahmin yap
+      function submitGuess() {
+        if (gameOver) return;
+
+        // Tahmin uzunluğunu kontrol et
+        if (currentGuess.length !== targetPlayerWithoutSpaces.length) {
+          updateMessage(
+            `Tahmin ${targetPlayerWithoutSpaces.length} harf uzunluğunda olmalı!`,
+            "error"
+          );
+          shakeRow(currentRow);
+          return;
+        }
+
+        // Tahmini işle
+        processGuess();
+      }
+
+      // Tahmini işle
+      function processGuess() {
+        guesses.push(currentGuess);
+
+        // Harfleri kontrol et ve renklendir
+        const targetLetters = targetPlayerWithoutSpaces.split("");
+        const guessLetters = currentGuess.split("");
+        const result = Array(targetPlayerWithoutSpaces.length).fill("absent");
+
+        // Önce doğru pozisyondaki harfleri bul
+        for (let i = 0; i < targetPlayerWithoutSpaces.length; i++) {
+          if (guessLetters[i] === targetLetters[i]) {
+            result[i] = "correct";
+            targetLetters[i] = null; // Kullanıldı olarak işaretle
+          }
+        }
+
+        // Sonra doğru harf ama yanlış pozisyonları bul
+        for (let i = 0; i < targetPlayerWithoutSpaces.length; i++) {
+          if (result[i] === "correct") continue;
+
+          const index = targetLetters.indexOf(guessLetters[i]);
+          if (index !== -1) {
+            result[i] = "present";
+            targetLetters[index] = null; // Kullanıldı olarak işaretle
+          }
+        }
+
+        // Kutuları renklendir
+        for (let i = 0; i < targetPlayerWithoutSpaces.length; i++) {
+          const tile = document.getElementById(`tile-${currentRow}-${i}`);
+          setTimeout(() => {
+            tile.classList.add(result[i], "flip");
+          }, i * 300);
+        }
+
+        // Klavyeyi güncelle
+        updateKeyboard(guessLetters, result);
+
+        // Oyun durumunu kontrol et
+        setTimeout(() => {
+          if (currentGuess === targetPlayerWithoutSpaces) {
+            // Kazandı
+            gameOver = true;
+            score += remainingAttempts * 10;
+            updateScore();
+            showCelebration();
+            updateMessage(
+              `Tebrikler! ${targetPlayer} ismini ${
+                6 - remainingAttempts + 1
+              } denemede buldun!`,
+              "success"
+            );
+          } else {
+            // Yanlış tahmin
+            remainingAttempts--;
+            updateRemainingAttempts();
+
+            if (remainingAttempts === 0) {
+              // Kaybetti
+              gameOver = true;
+              updateMessage(`Maalesef! Doğru isim: ${targetPlayer}`, "error");
+            } else {
+              // Devam et
+              currentRow++;
+              currentTile = 0;
+              currentGuess = "";
+              guessInput.value = "";
+              updateMessage("Bir sonraki tahminin?");
+            }
+          }
+        }, targetPlayerWithoutSpaces.length * 300 + 500);
+      }
+
+      // Satırı salla (hata animasyonu)
+      function shakeRow(row) {
+        const rowEl = document.getElementById(`row-${row}`);
+        rowEl.classList.add("shake");
+        setTimeout(() => {
+          rowEl.classList.remove("shake");
+        }, 500);
+      }
+
+      // Klavyeyi güncelle
+      function updateKeyboard(guessLetters, result) {
+        for (let i = 0; i < guessLetters.length; i++) {
+          // Tüm klavye tuşlarını kontrol et
+          const keys = document.querySelectorAll(".key:not(.wide)");
+          keys.forEach((key) => {
+            if (key.textContent === guessLetters[i]) {
+              // En iyi durumu koru (correct > present > absent)
+              if (result[i] === "correct") {
+                key.classList.remove("present", "absent");
+                key.classList.add("correct");
+              } else if (
+                result[i] === "present" &&
+                !key.classList.contains("correct")
+              ) {
+                key.classList.remove("absent");
+                key.classList.add("present");
+              } else if (
+                result[i] === "absent" &&
+                !key.classList.contains("correct") &&
+                !key.classList.contains("present")
+              ) {
+                key.classList.add("absent");
+              }
+            }
+          });
+        }
+      }
+
+      // Tuş basımını işle
+      function handleKeyPress(key) {
+        if (gameOver) return;
+
+        if (key === "ENTER") {
+          submitGuess();
+        } else if (key === "DEL") {
+          deleteLetter();
+        } else if (key.length === 1) {
+          addLetter(key);
+        }
+      }
+
+      // Kutlama animasyonu
+      function showCelebration() {
+        const celebration = document.createElement("div");
+        celebration.className = "celebration";
+        celebration.textContent = "Tebrikler!";
+
+        messageEl.parentNode.insertBefore(celebration, messageEl.nextSibling);
+
+        // 3 saniye sonra kutlamayı kaldır
+        setTimeout(() => {
+          celebration.remove();
+        }, 3000);
+      }
+
+      // Event listener'lar
+      submitButton.addEventListener("click", submitGuess);
+
+      resetButton.addEventListener("click", () => {
+        initGame();
+      });
+
+      guessInput.addEventListener("input", (e) => {
+        // Input'u büyük harfe çevir ve sadece harfleri kabul et
+        e.target.value = e.target.value
+          .toUpperCase()
+          .replace(/[^A-ZÇĞİÖŞÜ]/g, "");
+
+        // Input'taki harfleri kutulara ekle
+        currentGuess = e.target.value;
+
+        // Kutuları güncelle
+        updateTilesFromCurrentGuess();
+      });
+
+      guessInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          submitGuess();
+        }
+      });
+
+      // Sayfa yüklendiğinde oyunu başlat
+      window.onload = async function () {
+        await loadFootballPlayers();
+        initGame();
+      };
+    </script>
+  </body>
+</html>
