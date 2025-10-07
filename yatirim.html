@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Yatırım hesaplama uygulaması ile mevcut birikiminizi ve düzenli yatırımınızı girerek beklenen kazancınızı hesaplayın."
+    />
+    <title>Yatırım Hesaplayıcı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/yatirim.css" />
+  </head>
+  <body
+    class="bg-gradient-to-r from-teal-400 to-blue-500 min-h-screen flex items-center justify-center p-4"
+  >
+    <main
+      class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-lg flex flex-col gap-6 transition-transform transform hover:scale-[1.01]"
+    >
+      <h1 class="text-3xl font-bold text-center text-gray-800">
+        Yatırım Hesaplama Uygulaması
+      </h1>
+
+      <!-- Form Alanları -->
+      <div class="flex flex-col gap-2">
+        <label for="initialAmount" class="font-semibold text-gray-700"
+          >Mevcut Birikim (₺)</label
+        >
+        <input
+          type="number"
+          id="initialAmount"
+          placeholder="Örn: 100000"
+          class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-400 transition"
+        />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="font-semibold text-gray-700"
+          >Düzenli Yatırım Sıklığı:</span
+        >
+        <div class="flex gap-4">
+          <label class="flex items-center gap-1"
+            ><input type="radio" name="frequency" value="weekly" checked />
+            Haftalık</label
+          >
+          <label class="flex items-center gap-1"
+            ><input type="radio" name="frequency" value="monthly" />
+            Aylık</label
+          >
+          <label class="flex items-center gap-1"
+            ><input type="radio" name="frequency" value="yearly" />
+            Yıllık</label
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="regularAmount" class="font-semibold text-gray-700"
+          >Düzenli Yatırım Miktarı (₺)</label
+        >
+        <input
+          type="number"
+          id="regularAmount"
+          placeholder="Örn: 10000"
+          class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-400 transition"
+        />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="period" class="font-semibold text-gray-700"
+          >Kaç <span id="periodLabel">Hafta</span> Sonra?</label
+        >
+        <input
+          type="number"
+          id="period"
+          placeholder="Örn: 12"
+          class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-teal-400 transition"
+        />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="interest" class="font-semibold text-gray-700"
+          >Yıllık Beklenen Kar (%)</label
+        >
+        <input
+          type="range"
+          id="interest"
+          min="0"
+          max="200"
+          value="50"
+          class="w-full"
+        />
+        <span id="interestValue" class="text-gray-800 font-bold">50%</span>
+      </div>
+
+      <button
+        id="calculateBtn"
+        class="bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition transform hover:-translate-y-1 duration-300 font-semibold"
+      >
+        Hesapla
+      </button>
+
+      <!-- Progress Bar -->
+      <div id="result" class="relative mt-4">
+        <div class="h-2 bg-teal-200 rounded-full overflow-hidden">
+          <div
+            class="h-2 bg-teal-500 w-0 transition-all duration-500"
+            id="progressBar"
+          ></div>
+        </div>
+        <p
+          id="resultText"
+          class="text-center text-gray-800 font-semibold mt-2"
+        ></p>
+      </div>
+
+      <!-- Sonuç Detayları -->
+      <div id="summary" class="bg-gray-50 p-4 rounded-lg shadow-inner hidden">
+        <p id="totalInvested" class="font-semibold text-gray-700"></p>
+        <p id="totalProfit" class="font-semibold text-gray-700"></p>
+        <p
+          id="finalAmount"
+          class="font-semibold text-gray-700 text-xl text-teal-600"
+        ></p>
+      </div>
+
+      <!-- Grafik Alanı -->
+      <canvas
+        id="investmentChart"
+        class="mt-6 rounded-xl shadow-lg bg-white p-2"
+      ></canvas>
+    </main>
+
+    <script src="js/yatirim.js"></script>
+  </body>
+</html>
