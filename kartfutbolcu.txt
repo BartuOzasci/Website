@@ -107,43 +107,12 @@ Dino Zoff
 Sepp Maier
 Gordon Banks
 Bobby Moore
-Giacinto Facchetti
-Sandro Mazzola
-Gianni Rivera
-Luigi Riva
-Raymond Kopa
-Just Fontaine
-Sándor Kocsis
-Nándor Hidegkuti
-Josef Masopust
-Omar Sívori
-Luis Suárez Miramontes
-Florian Albert
-Denis Law
-Jimmy Johnstone
-Johan Neeskens
-Ruud Krol
-Arie Haan
-Paul Breitner
-Günter Netzer
-Wolfgang Overath
-Oleg Blokhin
-Allan Simonsen
-Zbigniew Boniek
 Jean-Pierre Papin
-Dejan Savićević
-Darko Pančev
 Gheorghe Hagi
 Carlos Valderrama
-Enzo Francescoli
-Daniel Passarella
 Mario Kempes
-Osvaldo Ardiles
 Hugo Sánchez
 Emilio Butragueño
-Míchel
-Alessandro Costacurta
-Mauro Tassotti
 Marcel Desailly
 Didier Deschamps
 Laurent Blanc
@@ -152,7 +121,6 @@ Bixente Lizarazu
 Christian Karembeu
 Emmanuel Petit
 Robert Pires
-Sylvain Wiltord
 David Trezeguet
 Edgar Davids
 Clarence Seedorf
@@ -160,7 +128,6 @@ Patrick Kluivert
 Marc Overmars
 Jaap Stam
 Frank de Boer
-Ronald de Boer
 Rui Costa
 Deco
 Ricardo Carvalho
@@ -171,13 +138,10 @@ Javier Saviola
 Juan Román Riquelme
 Pablo Aimar
 Bebeto
-Dunga
-Aldair
 Taffarel
 Jorginho
 Leonardo
 Denilson
-Juninho Pernambucano
 Gilberto Silva
 Lúcio
 Maicon
@@ -192,7 +156,6 @@ Claudio Bravo
 Ivan Zamorano
 Marcelo Salas
 Rafael Márquez
-Cuauhtémoc Blanco
 Landon Donovan
 Clint Dempsey
 Tim Howard
@@ -201,13 +164,7 @@ Shunsuke Nakamura
 Keisuke Honda
 Park Ji-sung
 Son Heung-min
-Cha Bum-kun
 Ali Daei
-Javad Nekounam
-Mehdi Mahdavikia
-Sami Al-Jaber
-Majed Abdullah
-Roger Milla
 Abedi Pelé
 Nwankwo Kanu
 Jay-Jay Okocha
@@ -222,49 +179,14 @@ Frédéric Kanouté
 Seydou Keita
 Dwight Yorke
 Paolo Rossi
-Toto Schillaci
 Roberto Donadoni
 Gianluca Vialli
-Giuseppe Bergomi
-Walter Zenga
-Andreas Brehme
-Pierre Littbarski
-Thomas Häßler
-Matthias Sammer
 Oliver Bierhoff
-Mehmet Scholl
-Stefan Effenberg
 Michael Laudrup
-Brian Laudrup
-Preben Elkjær
-Enzo Scifo
-Jan Ceulemans
-Jean-Marie Pfaff
-Michel Preud'homme
-Franky Vercauteren
-Gunnar Nordahl
-Nils Liedholm
-Kurt Hamrin
-Hristo Bonev
 Dimitar Berbatov
-Stiliyan Petrov
-Martin Petrov
-Emil Kostadinov
-Krasimir Balakov
-Yordan Letchkov
-Trifon Ivanov
-Nasko Sirakov
 Davor Šuker
-Zvonimir Boban
-Robert Prosinečki
-Alen Bokšić
-Robert Jarni
 Slaven Bilić
-Igor Štimac
-Mario Stanić
-Dado Pršo
 Niko Kovač
-Robert Kovač
 Darijo Srna
 Ivica Olić
 Mario Mandžukić
@@ -276,84 +198,37 @@ Andrej Kramarić
 Milan Rapaić
 Tomáš Rosický
 Jan Koller
-Karel Poborský
-Vladimír Šmicer
-Patrik Berger
 Petr Čech
 Milan Baroš
 Tomáš Ujfaluši
 Marek Jankulovski
 Zdeněk Grygera
-Tomáš Galásek
-Jon Dahl Tomasson
-Jesper Grønkjær
-Thomas Gravesen
-Martin Laursen
-Ebbe Sand
-Brian Steen Nielsen
-Peter Løvenkrands
 Christian Eriksen
 Simon Kjær
 Daniel Agger
 Nicklas Bendtner
-Dennis Rommedahl
 Sami Hyypiä
 Jari Litmanen
-Antti Niemi
-Mikael Forssell
 Teemu Pukki
 Robbie Keane
 Roy Keane
 Damien Duff
 Shay Given
-Steve Staunton
-Niall Quinn
-Ian Harte
 John O'Shea
 Richard Dunne
-Kevin Doyle
 Shane Long
 Eiður Guðjohnsen
 Gheorghe Popescu
-Dan Petrescu
 Adrian Mutu
 Cristian Chivu
-Cosmin Contra
-Ioan Ganea
-Dorinel Munteanu
-Adrian Ilie
-Viorel Moldovan
-Bogdan Stelea
-Marius Lăcătuș
-Ilie Dumitrescu
-Miodrag Belodedici
-Anghel Iordănescu
-Ladislau Bölöni
-Marcel Răducanu
-Rodion Cămătaru
-Marius Niculae
-Ciprian Marica
 Răzvan Raț
 Gabriel Torje
-Florin Răducioiu
-Dragan Stojković
-Siniša Mihajlović
-Predrag Mijatović
 Dejan Stanković
 Nemanja Vidić
 Branislav Ivanović
 Aleksandar Kolarov
-Savo Milošević
 Mateja Kežman
 Darko Kovačević
-Slaviša Jokanović
-Vladimir Jugović
-Albert Nađ
-Ivica Dragutinović
-Mladen Krstajić
-Zoran Mirković
-Ilija Petković
-Dragan Džajić
 Dušan Tadić
 Sergej Milinković-Savić
 Aleksandar Mitrović
@@ -363,28 +238,13 @@ Adem Ljajić
 Filip Kostić
 Dušan Vlahović
 Andriy Shevchenko
-Oleg Blokhin
-Igor Belanov
-Anatoliy Demyanenko
-Oleksandr Zavarov
-Oleh Protasov
-Hennadiy Lytovchenko
-Serhiy Rebrov
-Andriy Voronin
 Anatoliy Tymoshchuk
-Ruslan Rotan
 Andriy Yarmolenko
 Yevhen Konoplyanka
 Oleksandr Zinchenko
 Ruslan Malinovskyi
 Viktor Tsyhankov
-Artem Milevskyi
 Aliaksandr Hleb
-Sergei Aleinikov
-Sergei Gurenko
-Valentin Belkevich
-Maksim Romaschenko
-Vitali Kutuzov
 Alexander Kerzhakov
 Andrei Arshavin
 Roman Pavlyuchenko
@@ -2984,3 +2844,4 @@ Unai Simón
 Víctor Ruiz
 
 Yvan Neyou
+
