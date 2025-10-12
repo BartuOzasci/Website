@@ -37,7 +37,7 @@ async function dealCards() {
     cardContainer.innerHTML = "";
 
     // Tüm kartlar için kullanılacak olan sabit resmin yolu
-    const sabitResimUrl = "../futbolcukart.png";
+    const sabitResimUrl = "../img/futbolcukart.png";
 
     selectedPlayers.forEach((player, index) => {
       const frameClass = goldIndexes.has(index) ? "gold-frame" : "";
@@ -67,4 +67,5 @@ function shuffleArray(array) {
   }
   return array;
 }
+
 
