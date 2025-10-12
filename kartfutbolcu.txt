@@ -677,12 +677,8 @@ David de Gea
 David Ginola
 David James
 David Luiz
-David Marshall
-David Meyler
-David Nugent
 David Ospina
 David Silva
-David Stockdale
 Davide Santon
 Davinson Sánchez
 DeAndre Yedlin
@@ -691,78 +687,53 @@ Demarai Gray
 Denis Suárez
 Denys Boyko
 Deulofeu
-Diafra Sakho
 Diego Costa
 Diego Forlán
 Diego Lugano
-Diego Poyet
-Diniyar Bilyaletdinov
-Dion Dublin
 Djibril Cissé
-Dmitri Kharine
 Doni
-Dorus de Vries
 Douglas Costa
-Dwight Gayle
-Dwight McNeil
 Ederson
 Edin Džeko
 Édouard Mendy
 Eidur Gudjohnsen
-El-Hadji Diouf
 Eliaquim Mangala
-Emanuel Pogatetz
-Emerson Palmieri
 Emile Heskey
 Emmanuel Adebayor
 Emmanuel Eboué
-Emmanuel Rivière
 Enner Valencia
 Eric Bailly
 Eric Dier
-Erik Edman
 Erik Lamela
-Erik Pieters
 Esteban Cambiasso
 Esteban Granero
 Etienne Capoue
 Everton
 Evra
-Ezequiel Schelotto
 Fàbregas
 Fabián Balbuena
 Fabian Delph
 Fabian Schär
 Fabianski
 Fabio Borini
-Fabio da Silva
 Fabricio Coloccini
 Facundo Ferreyra
 Falcao
-Federico Fernández
 Federico Macheda
 Felipe Anderson
 Felipe Caicedo
 Fellaini
 Fernandinho
 Fernando
-Fernando Amorebieta
-Fernando Forestieri
 Fernando Llorente
 Fernando Torres
-Fillol
-Finidi George
 Florent Malouda
-Florent Sinama-Pongolle
-Florian Lejeune
 Florin Andone
-Florin Gardoș
 Fousseni Diabaté
 Francis Coquelin
 Fraser Forster
 Fred
 Freddie Ljungberg
-Frédéric Piquionne
 Frederico Fazio
 Gabriel
 Gabriel Agbonlahor
@@ -770,175 +741,95 @@ Gabriel Heinze
 Gabriel Jesus
 Gabriel Paulista
 Gaël Clichy
-Gaël Givet
-Gaëtan Bong
 Gareth Barry
-Gareth McAuley
 Gareth Southgate
 Gary Cahill
 Gary Medel
 Gary Neville
-Gary O'Neil
-Gary Speed
-Gastón Ramírez
-Gavin McCann
-Gedo
 Geoff Cameron
 Georginio Wijnaldum
 Gerard Deulofeu
 Geremi
 Gervinho
-Giannelli Imbula
 Gianfranco Zola
-Gibson
-Giedrius Arlauskis
 Gilberto Silva
-Gilles Barnes
 Glen Johnson
 Gökhan Inler
 Gökhan Töre
 Granit Xhaka
-Graeme Le Saux
 Graziano Pellè
-Grzegorz Rasiak
-Guirane N'Daw
 Guus Hiddink
 Gylfi Sigurðsson
-Habib Beye
 Habib Sissoko
 Hal Robson-Kanu
-Hamilton Ricard
-Hameur Bouazza
 Hatem Ben Arfa
-Hayden Mullins
 Héctor Bellerín
-Heidar Helguson
-Heiko Westermann
-Henri Saivet
 Henrikh Mkhitaryan
-Heurelho Gomes
-Hogan Ephraim
-Hólmar Örn Eyjólfsson
-Hope Akpan
-Hossam Ghaly
 Hélder Postiga
 Hugo Lloris
 Hugo Rodallega
-Humberto Suazo
 Iago Aspas
 Iago Falque
-Ian Harte
-Ian Walker
 Ibrahim Afellay
-Ibrahima Sonko
 Idrissa Gueye
 Igor Bišćan
-Igor Štimac
-Ikechi Anya
 İlkay Gündoğan
 Iñigo Martínez
-Ioan Ganea
 Islam Slimani
-Ivan Campo
-Ivan Klasnić
 Ivanović
-Jacek Bąk
 Jack Butland
-Jack Colback
-Jack Cork
 Jack Rodwell
 Jack Wilshere
 Jackson Martínez
 Jadon Sancho
-Jaime Gavilán
 Jake Livermore
-James Beattie
-James Chester
-James Collins
 James McCarthy
-James McClean
-James McFadden
 James Milner
-James Morrison
-James Tomkins
 James Ward-Prowse
 Jamie Carragher
 Jamie O'Hara
 Jamie Vardy
-Jan Kirchhoff
-Jan Kliment
-Jan Mucha
-Jan Vennegoor of Hesselink
 Jan Vertonghen
-Javier Acuña
-Javier Garrido
 Javier Hernández
-Javier Manquillo
 Javier Mascherano
-Jay Bothroyd
 Jay Rodriguez
-Jay Spearing
 Jay-Jay Okocha
-Jayson Molumby
-Jean-Alain Boumsong
-Jean Beausejour
-Jean-Joël Perrier-Doumbé
-Jed Steer
 Jeferson Farfán
-Jefferson Montero
 Jeffrey Bruma
 Jeffrey Schlupp
 Jens Lehmann
-Jérémie Aliadière
 Jérôme Boateng
-Jérôme Rothen
 Jermain Defoe
-Jermaine Beckford
 Jermaine Jenas
 Jermaine Pennant
 Jesé
 Jesús Gámez
 Jesús Navas
 Jô
-Joachim Andersen
 João Cancelo
-João Carlos Teixeira
 João Moutinho
 João Palhinha
 João Pedro
 Joe Allen
 Joe Cole
 Joe Hart
-Joe Ledley
-Joe Linton
 Joel Campbell
-Joel Robles
-Joel Ward
 Joël Matip
 Joey Barton
 Johann Berg Guðmundsson
 John Arne Riise
 John Carew
-John Fleck
 John Guidetti
 John Heitinga
-John Mensah
 John O'Shea
 John Paintsil
-John Ruddy
 John Stones
 John Terry
 Jon Flanagan
 Jonás Gutiérrez
 Jonathan Biabiany
 Jonathan de Guzmán
-Jonathan Greening
-Jonathan Hogg
-Jonathan Spector
-Jonathan Walters
-Jonathan Woodgate
 Jonny Evans
-Jonny Hayes
 Jordon Ibe
 Jordan Ayew
 Jordan Henderson
@@ -2844,4 +2735,5 @@ Unai Simón
 Víctor Ruiz
 
 Yvan Neyou
+
 
