@@ -2832,85 +2832,38 @@ Kevin Rodrigues
 Kevin Schade
 Kieran Trippier
 Kingsley Coman
-Ko Itakura
 Kubo
-Lameck Banda
-Largie Ramazani
-Lassine Sinayoko
-Latasa
-Lazar Samardžić
-Leandro Cabrera
 Leo Baptistão
-Léo Jardim
-Lewis Dunk
-Lisandro Martínez
-Lloyd Kelly
-Lorenzo Colombo
-Lorenzo Montipò
-Loum Tchaouna
-Lucas Boyé
-Lucas Robertone
 Lucas Zelarayán
-Luciano Rodríguez
-Luís Maximiano
 Luka Modrić
 Luka Sučić
 Lukas Hradecky
 Lukasz Skorupski
-Luke Thomas
-Lumor Agbenyenu
 Lyanco
-Maciej Rosołek
-Magomed Ozdoyev
-Mahdi Camara
-Majeed Ashimeru
 Malcom
 Manuel Akanji
 Manuel Ugarte
-Manu Morlanes
-Manu Sánchez
 Marc Guehi
 Marco Asensio
 Marco Bizot
-Marco Friedl
-Marcos André
-Marek Rodák
 Marin Pongračić
 Mario Hermoso
-Mario Mitaj
 Mark Flekken
 Martin Braithwaite
-Martin Hongla
 Martin Zubimendi
-Marvin Ducksch
-Masaya Okugawa
 Matheus Uribe
-Mathieu Gorgelin
-Matías Arezo
 Matías Soulé
 Mattias Svanberg
 Max Aarons
-Maximilian Wöber
-Maxime Dupé
-Maxime Gonalons
-Maximiliano Gómez
-M'Bala Nzola
-Mërgim Vojvoda
 Michael Murillo
 Micky van de Ven
 Miguel Almirón
-Mihailo Ristić
 Mislav Oršić
 Mitchel Bakker
 Mohammed Kudus
-Mohammed Salisu
 Morgan Gibbs-White
-Morgan Sanson
-Moritz Jenz
-Morten Frendrup
 Mouctar Diakhaby
 Munir
-Nabil Aberdin
 Nahuel Molina
 Nathan Aké
 Nathan Collins
@@ -2921,96 +2874,40 @@ Nemanja Radonjić
 Neto
 Nick Pope
 Nico Paz
-Nicolò Casale
-Nikola Moro
-Nuno Santos
 Oihan Sancet
 Oliver Baumann
 Oliver Burke
 Oliver Christensen
 Ollie Watkins
-Omar Mascarell
 Orkun Kökçü
-Osame Sahraoui
 Oussama Idrissi
-Páez
-Pathé Ciss
-Patrick Wimmer
-Paul Akouokou
 Pau López
-Pavel Bucha
-Pep Chavarría
 Pervis Estupiñán
 Philip Billing
 Philipp Lienhart
-Pietro Terracciano
 Przemysław Frankowski
-Quentin Merlin
-Rafael Czichos
-Raheem Edwards
 Ramazan Özcan
 Raphael Onyedika
-Rasmus Kristensen
 Rayan Aït-Nouri
 Rayan Cherki
-Reinildo Mandava
-Remko Pasveer
-Rémy Cabella
-Riccardo Marchizza
 Ritsu Doan
-Robert Gumny
 Robert Sanchez
-Robin Koch
-Robin Zentner
-Robson Bambu
-Rodolfo Cota
-Rodrigo Riquelme
-Roger Martí
 Roland Sallai
-Romain Faivre
-Romain Perraud
 Rubén Alcaraz
-Rubén Duarte
 Rubén García
-Rubén Peña
-Rubén Sobrino
-Ryan Christie
-Salva Sevilla
-Samuele Ricci
-Santi Mina
 Santiago Ascacíbar
-Santiago Bueno
 Santiago Giménez
 Sean Klaiber
 Sebastian Rode
 Sebastian Szymański
-Sébastien Corchia
-Sepp van den Berg
-Sergi Guardiola
-Sergi Palencia
-Sergi Samper
 Serhou Guirassy
-Shon Weissman
-Skelly Alvero
-Steffen Tigges
-Stole Dimitrievski
-Sven Michel
-Sylla
-Talles Magno
-Taty Castellanos
-Teddy Teuma
-Terem Moffi
 Thorgan Hazard
-Timo Hübers
-Tom Krauß
-Tomáš Čvančara
 Tomáš Holeš
 Toni Martínez
 Tyrick Mitchell
 Tyrone Mings
 Valentino Lazaro
 Vicente Guaita
-Vini Souza
 Vinicius
 Vinicius Tobias
 Vitaliy Mykolenko
@@ -3018,441 +2915,72 @@ Vitor Carvalho
 Warren Zaïre-Emery
 Wesley Saïd
 Will Orban
-Willi Orban
-Wilson Isidor
 Wout Faes
 Wu Lei
 Xavi Simons
 Yann Karamoh
 Yassine Benzia
 Youssouf Ndayishimiye
-Yuriel Celi
-Yvon Mvogo
-Zaidu Sanusi
-Zakaria Aboukhlal
-Álex Alegría
-Álex Balboa
-Álex Bermejo
-Álex Blanco
-Álex Domínguez
-Álex Gallar
-Álex Muñoz
-Álex Pérez
-Alin Toșca
-Allan Nyom
-Álvaro Bastida
-Álvaro Medrán
-Álvaro Tejero
-Amallah
-Amath Ndiaye
-Andoni Gorosabel
-Andrés Martín
-Andy
-Ángel Montoro
-Anselmo García
 Antonio Adán
-Antonio Barragán
-Antonio Cristian
-Antonio Luna
-Antonio Raíllo
-Aridane Hernández
-Armando Shashoua
-Arnau Comas
-Arvin Appiah
-Awer Mabil
-Axel Bamba
 Ayoze Pérez
-Babic
 Bebé
-Béni Nkololo
-Bernardo Espinosa
 Borja Bastón
-Brandon Aguilera
-Brandon Soppy
-Brian Cufré
-Brian Oliván
-Bruno González
-Campaña
-Carlos Akapo
 Carlos Bacca
-Carlos Benavídez
-Carlos Clerc
-Carlos Isaac
-Carlos Neva
-Carlos Pomares
-Carlos Vigaray
-César de la Hoz
-César Montes
 Charly Musonda
-Chema
-Choco Lozano
-Chris Ramos
-Christian Cueva
-Christian Oliva
-Christian Rivera
 Christian Stuani
-Coke
-Cristian Álvarez
-Cristian Gamboa
-Cristian Glauder
-Cristian Herrera
 Cristian Tello
-Cristo González
-Curro Sánchez
-Damian Musto
-Damián Petcoff
-Daniel Carriço
-Daniel Cárdenas
-Daniel Fuzato
-Daniele Verde
-Dani Gómez
-Dani Martín
-Dani Ojeda
-Dani Raba
-David Costas
-David Gil
-David Juncà
-David López
-David Remeseiro
-Dídac Vilà
 Diego Alves
-Diego Conde
-Diego González
-Diego López
-Dimitri Foulquier
-Domingos Duarte
-Egor Baburin
-El Hacen
-Embarba
 Emre Çolak
-Enric Gallego
-Erik Morán
-Ernesto Gómez
-Esteban Burgos
-Eteki
-Eugenio Pizzuto
-Fabrice Ondoa
-Fali
-Fausto Vera
-Fede Vico
-Federico San Emeterio
-Félix Garreta
-Fernando Calero
-Fernando Martínez
-Ferreyra
-Fidel
-Filip Jorgensen
 Florin Andone
-Fran Cruz
-Fran Mérida
-Fran Villalba
-Francisco Portillo
-Frederik Vesti
-Fuidias
 Gabi
-Gaizka Larrazabal
-Gastón Silva
 Gorka Iraizoz
-Gorka Santamaría
-Guido Carrillo
-Guillermo Maripán
 Guillermo Ochoa
 Guruzeta
-Gustavo Blanco
-Haissem Hassan
-Héber Pena
 Héctor Hernández
-Helibelton Palacios
 Hernâni
-Iddrisu Baba
-Ignacio Vidal
-Ignasi Miquel
-Iker Recio
-Ilias Chaira
-Imanol García
-Íñigo Vicente
-Isaac Carcelén
-Isaac Mbenza
 Isaac Success
-Isak Jansson
-Israel Salazar
-Ivan Martos
 Iván Romero
-Iván Sánchez
 Jairo Izquierdo
 Jan Oblak
-Javier Avilés
-Javier López
-Javier Ontiveros
 Javier Pastore
 Javier Puado
-Javi Fuego
-Javi Galán
-Javi Jiménez
-Javi Moyano
-Javi Muñoz
-Javi Serrano
-Jean-Pierre Rhyner
 Jeremías Ledesma
-Jérôme Prior
-Jesús Rueda
-Jhon Lucumí
 Joaquín
-Joaquín Fernández
-Joaquín Muñoz
-Johan Vásquez
-John Donald
-Jon Ander Garrido
-Jon Bautista
-Jon Erice
-Jony
-Jony Álamo
-Jordan Carrillo
-Jordi Amat
-Jordi Calavera
-Jordi Mboula
-Jorge Molina
-Jorge Pulido
-José Antonio Caro
-José Arnaiz
-José Carlos Lazo
-José Corpas
-José Fontán
-José León
 José Luis Gayà
-José Manuel Arias
-José Naranjo
-José Pozo
 José Rodríguez
-José Salinas
 José Sánchez
-José Suárez
 Joselu
-Juan Berrocal
-Juan Cala
-Juan Carlos
-Juan Cruz
-Juan Diego Molina
-Juan Ibiza
-Juan Iglesias
-Juan Manuel
-Juan Miranda
-Juan Villar
-Juanjo Narváez
-Juanpe
-Julián Delmás
-Julián Echeverri
-Julio Buffarini
 Julio César
-Júnior Alonso
-Kenedy
-Kike Barja
-Kike García
-Kike Pérez
-Kike Saverio
 Kiko Casilla
 Kiko Femenía
-Kiko Olivas
-Largie Ramazani
-Laure
-Lautaro de León
-Lazo
-Leandro Chichizola
-Leonardo Ulloa
-Leo Román
-Leo Suárez
-Lisandro Magallán
-Lluís López
-Lolo
-Loren Morón
 Luca Zidane
-Lucas Olaza
 Lucas Pérez
-Lucas Torró
-Luciano Acosta
-Lucumi
-Luis Abram
 Luis Advíncula
-Luis Alfonso
-Luis Pérez
-Luis Rioja
-Luis Romo
-Luisinho
-Luka Romero
-Mackay
-Mady Camara
-Mamadou Sylla
-Manafá
-Manolo Reina
-Manu Vallejo
-Maras
-Marc Cardona
-Marc Pubill
-Marcelino
-Marcos Mauro
-Marcos Paulo
 Mariano Díaz
 Mario Gaspar
-Mario Hernández
 Mario Soriano
-Martín Aguirregabiria
 Martín Montoya
-Martín Valjent
-Matheuzinho
-Mathías Olivera
-Matías Dituro
-Matías Nahuel
-Matías Vargas
 Matija Nastasić
-Matt Miazga
-Mauro Arambarri
-Maxime Lestienne
-Mickaël Malsa
-Miguel Atienza
-Miguel Baeza
-Miguel de la Fuente
-Miguel Flaño
-Miguel Ángel Guerrero
-Miguel Ángel Moyá
-Mikel Balenziaga
-Mikel Rico
-Mikel Vesga
-Milla
-Míchel
-Moi Delgado
-Momo
 Morales
-Nacho
 Nacho Gil
-Nacho Martínez
-Nacho Vidal
 Nemanja Gudelj
-Nemanja Radoja
-Nico Serrano
-Nikola Maraš
-Nolaskoain
-Oier
-Oier Zarraga
 Óliver Torres
-Pablo Chavarría
-Pablo de Blasis
-Pablo Hervías
-Pablo Ibáñez
-Pablo Machín
 Pablo Marí
-Pablo Martínez
-Pablo Maffeo
-Pacha Espino
-Pape Diop
 Parejo
-Paulo Oliveira
-Pedro Alcalá
-Pedro Bigas
-Pedro López
-Pedro Mosquera
-Pere Pons
-Peru Nolaskoain
 Petar Musa
-Petrovic
-Pichu Cuéllar
-Pier
-Pierre Kunde
-Pol Lozano
 Portu
-Quini
-Raí
-Ramalho
-Ramazani
-Ramiro
-Ramón Azeez
-Raúl Carnero
-Raúl Fernández
-Raúl Guti
-Raúl Navas
-Raúl Torrente
-Recio
 Reinier
-Renato Dirnei
-Ricard Sánchez
-Rober Correa
 Rober Ibáñez
-Rober Pier
-Roberto
-Roberto Correa
-Roberto Jiménez
-Roberto Torres
-Rodrigo Battaglia
-Rodrigo Ely
-Roger
-Roque Mesa
-Rubén Blanco
-Rubén Rochina
-Rubén Vezo
-Rui Silva
-Ruiz de Galarreta
-Saidy Janko
-Salvi
-Samu Costa
 Samu Sáiz
-Sandro Ramírez
-Sanjurjo
 Santi Cazorla
-Santi García
-Santi Ramos
-Santiago Mouriño
 Saul
-Sekou Gassama
-Sergio Álvarez
-Sergio Bermejo
-Sergio Carreira
-Sergio Castel
-Sergio González
-Sergio Guardiola
-Sergio Juste
-Sergio León
-Sergio Postigo
-Sergio Sánchez
-Sergio Tejera
-Sergi Enrich
 Sergi Gómez
-Sergi Guardiola
 Sergi Roberto
-Shon Weissman
 Sidnei
-Simo
-Sofian Chakla
-Stefan Mitrović
-Stoichkov
-Take
-Thierry Correia
 Thomas Müller
-Tiago Ilori
-Toño
 Umar Sadiq
-Unai Bustinza
-Unai García
 Unai López
 Unai Simón
-Uroš Račić
-Varazdat Haroyan
-Víctor Camarasa
-Víctor Díaz
-Víctor García
-Víctor Laguardia
-Víctor Mollejo
-Víctor Rodríguez
 Víctor Ruiz
-Víctor Sánchez
-Vinicius Souza
-Waldo Rubio
-Weissman
-Xabi Etxeita
-Xavi Torres
-Ximo Navarro
-Yangel Herrera
-Yanís Rahmani
-Yellu Santiago
-Yoel
-Yuri
-Yuri de Souza
+
 Yvan Neyou
