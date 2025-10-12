@@ -2014,13 +2014,10 @@ Jaime Mata
 Jakub Jankto
 Jamal Musiala
 Jan Oblak
-Jason
-Javi Galán
 Javi Martínez
 Javi Puado
 Jean-Clair Todibo
 Jean-Philippe Mateta
-Jens Stryger Larsen
 Jérémie Boga
 Jeremy Doku
 Joakim Mæhle
@@ -2052,12 +2049,9 @@ Junya Ito
 Juraj Kucka
 Jurriën Timber
 Kalidou Koulibaly
-Kamaldeen Sulemana
 Karim Adeyemi
 Karim Benzema
-Karol Linetty
 Kasper Dolberg
-Kevin Akpoguma
 Kevin Mbabu
 Kevin Volland
 Konrad Laimer
@@ -2075,28 +2069,17 @@ Leon Goretzka
 Leonardo Bonucci
 Leonardo Spinazzola
 Leroy Sané
-Lirola
-Loïc Badé
 Lorenzo Pellegrini
-Lovro Majer
 Lucas Hernández
 Lucas Ocampos
 Lucas Paquetá
 Lucas Vázquez
-Ludwig Augustinsson
-Luka Ivanušec
 Luka Jović
 Luis Alberto
 Luis Díaz
-Luis Maximiano
-Luis Milla
 Luis Muriel
 Luiz Felipe
-Lyss Mousset
 Malang Sarr
-Malick Thiaw
-Mamadou Coulibaly
-Manor Solomon
 Marc Bartra
 Marc Roca
 Marcel Sabitzer
@@ -2108,11 +2091,8 @@ Marcus Thuram
 Mário Rui
 Mario Götze
 Mario Pašalić
-Marko Livaja
 Marlon
 Martin Ødegaard
-Martin Terrier
-Marvin Friedrich
 Mason Greenwood
 Mason Mount
 Matheus Cunha
@@ -2735,5 +2715,6 @@ Unai Simón
 Víctor Ruiz
 
 Yvan Neyou
+
 
 
